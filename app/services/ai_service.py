@@ -16,7 +16,8 @@ def evaluate_ticket_with_ai(db: Session, ticket: Ticket) -> Ticket:
         ticket.status = TicketStatus.resolved
     else:
         ticket.status = TicketStatus.awaiting_review
-
+    ticket.intent = decision.intent
+    ticket.suggestion = decision.suggestion
     db.commit()
     db.refresh(ticket)
     return ticket

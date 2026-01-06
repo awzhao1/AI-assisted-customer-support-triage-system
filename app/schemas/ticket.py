@@ -3,7 +3,7 @@ from uuid import UUID
 from datetime import datetime
 from typing import Optional
 
-from app.db.models.ticketstatus import TicketStatus
+from app.db.models.ticketstatus import TicketStatus, TicketIntent
 
 
 class TicketCreate(BaseModel):
@@ -19,6 +19,8 @@ class TicketRead(BaseModel):
     customer_email: EmailStr
     status: TicketStatus
     priority: Optional[str]
+    intent: TicketIntent
+    suggestion: str
     created_at: datetime
 
     class Config:

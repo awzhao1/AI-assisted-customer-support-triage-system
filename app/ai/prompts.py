@@ -5,6 +5,7 @@ You must:
 - Classify intent
 - Assign priority
 - Provide confidence
+- Give a suggestion on what to do
 
 Return ONLY valid JSON.
 """

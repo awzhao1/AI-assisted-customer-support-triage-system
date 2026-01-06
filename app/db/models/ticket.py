@@ -2,12 +2,12 @@ import uuid
 from datetime import datetime
 from sqlalchemy import Column, String, Text, Enum, DateTime
 from sqlalchemy.dialects.postgresql import UUID
-
+from .ticketstatus import TicketStatus, TicketIntent
 from app.db.base import Base
-from .ticketstatus import TicketStatus
 
 
 
+# Database declaration
 class Ticket(Base):
     __tablename__ = "tickets"
 
@@ -23,7 +23,12 @@ class Ticket(Base):
     )
 
     priority = Column(String(50), nullable=True)
-
+    intent = Column(
+        Enum(TicketIntent),
+        nullable = False,
+        default = TicketIntent.unknown,
+    )
+    suggestion = Column(Text, nullable=False, default="")
     created_at = Column(
         DateTime(timezone=True),
         default=datetime.utcnow,
